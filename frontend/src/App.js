@@ -9,14 +9,11 @@ import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ProjectDetail from "@/components/ProjectDetail";
 import AdminLogin from "@/components/admin/AdminLogin";
 import AdminDashboard from "@/components/admin/AdminDashboard";
 import ProjectsList from "@/components/admin/ProjectsList";
 import ProjectForm from "@/components/admin/ProjectForm";
-import ContactsList from "@/components/admin/ContactsList";
 import ProtectedRoute from "@/components/admin/ProtectedRoute";
-import { profileData } from "@/mockData";
 
 const HomePage = () => {
   return (
