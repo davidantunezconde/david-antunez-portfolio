@@ -19,8 +19,8 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <Header />
-      <Hero profileData={profileData} />
-      <About profileData={profileData} />
+      <Hero />
+      <About />
       <Portfolio />
       <Services />
       <Contact />
@@ -36,7 +36,6 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/project/:id" element={<ProjectDetail />} />
           
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -69,14 +68,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProjectForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/contacts"
-            element={
-              <ProtectedRoute>
-                <ContactsList />
               </ProtectedRoute>
             }
           />
