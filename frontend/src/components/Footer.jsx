@@ -1,6 +1,16 @@
 import React from 'react';
 import { Instagram, Youtube, Linkedin } from 'lucide-react';
-import { profileData } from '../mockData';
+
+// Profile data - hardcoded for now
+const profileData = {
+  name: "David Antúnez",
+  title: "Audiovisual Creator / Filmmaker",
+  socialMedia: {
+    instagram: "https://www.instagram.com/davidantunez__/",
+    youtube: "https://www.youtube.com/@davidantunezconde",
+    linkedin: "https://www.linkedin.com/in/davidantunezconde"
+  }
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

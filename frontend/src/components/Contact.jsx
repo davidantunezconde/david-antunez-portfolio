@@ -1,6 +1,15 @@
 import React from 'react';
 import { Instagram, Youtube, Linkedin, Mail } from 'lucide-react';
-import { profileData } from '../mockData';
+
+// Profile data - hardcoded for now, can be fetched from API later
+const profileData = {
+  email: "davidantunezconde@gmail.com",
+  socialMedia: {
+    instagram: "https://www.instagram.com/davidantunez__/",
+    youtube: "https://www.youtube.com/@davidantunezconde",
+    linkedin: "https://www.linkedin.com/in/davidantunezconde"
+  }
+};
 
 const Contact = () => {
   return (

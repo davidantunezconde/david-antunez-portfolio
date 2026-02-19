@@ -1,6 +1,33 @@
 import React from 'react';
-import { services } from '../mockData';
 import { Video, Camera, Film, Palette } from 'lucide-react';
+
+// Services data - hardcoded
+const services = [
+  {
+    id: 1,
+    title: "Video Production",
+    description: "Full-service video production from concept to final delivery, including pre-production planning, filming, and post-production.",
+    icon: "video"
+  },
+  {
+    id: 2,
+    title: "Photography",
+    description: "Professional photography services for portraits, events, commercial work, and artistic projects with a cinematic approach.",
+    icon: "camera"
+  },
+  {
+    id: 3,
+    title: "Editing & Post-Production",
+    description: "Expert video editing, sound design, and motion graphics to bring your footage to life with professional polish.",
+    icon: "film"
+  },
+  {
+    id: 4,
+    title: "Color Grading",
+    description: "Cinematic color grading to enhance mood, atmosphere, and visual storytelling in your video projects.",
+    icon: "palette"
+  }
+];
 
 const iconMap = {
   video: Video,
