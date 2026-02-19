@@ -56,33 +56,28 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero-section relative h-screen w-full overflow-hidden">
+    <section className="hero-section relative h-screen w-full overflow-hidden bg-black">
       {/* Fullscreen YouTube Video Background */}
-      <div className="absolute inset-0 w-full h-full">
-        {/* YouTube Video - Fullscreen, scaled up to hide YouTube UI */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <iframe
-            id="hero-video"
-            ref={iframeRef}
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&origin=${window.location.origin}`}
-            className="absolute"
-            style={{
-              width: '120%',
-              height: '120%',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              pointerEvents: 'none',
-            }}
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            loading="eager"
-            title="Showreel Background"
-          ></iframe>
-        </div>
-        
-        {/* Subtle gradient overlay for aesthetics only */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 pointer-events-none z-10"></div>
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+        {/* YouTube Video - Full video visible, no cropping */}
+        <iframe
+          id="hero-video"
+          ref={iframeRef}
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&origin=${window.location.origin}`}
+          className="w-full h-full"
+          style={{
+            aspectRatio: '16/9',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            width: 'auto',
+            height: '100%',
+            pointerEvents: 'none',
+          }}
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          loading="eager"
+          title="Showreel Background"
+        ></iframe>
       </div>
 
       {/* Mute/Unmute Button */}
