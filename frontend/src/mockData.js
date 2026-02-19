@@ -5,7 +5,7 @@ export const profileData = {
   title: "Audiovisual Creator / Filmmaker",
   tagline: "Crafting visual stories that move hearts and inspire minds",
   bio: "I'm David Antúnez, a passionate filmmaker and audiovisual creator dedicated to bringing stories to life through the power of visual storytelling. With years of experience in cinematography, editing, and color grading, I transform ideas into compelling narratives that resonate emotionally with audiences. My work spans documentaries, music videos, commercial productions, and artistic projects, each crafted with meticulous attention to detail and a deep understanding of visual language.",
-  showreelUrl: "https://vimeo.com/1166314185",
+  showreelUrl: "https://youtu.be/rHUYgdc1u7E",
   profileImage: "https://images.unsplash.com/photo-1597465103212-7cd0b847a246",
   email: "contact@davidantunezfilms.com",
   socialMedia: {
