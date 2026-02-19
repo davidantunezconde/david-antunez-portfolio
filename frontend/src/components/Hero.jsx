@@ -35,20 +35,24 @@ const Hero = ({ profileData, onViewProjects }) => {
   const videoId = 'GN2GYZoP16E';
 
   return (
-    <section className="hero-section relative h-screen w-full overflow-hidden">
-      {/* Fullscreen YouTube Video Background - High Quality, Less Cropping */}
-      <div className="absolute inset-0 w-full h-full">
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
-        
-        {/* YouTube Video - Less vertical cropping, High Quality, No Branding */}
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+    <section className="hero-section relative h-screen w-full bg-black overflow-hidden">
+      {/* Video Container with Padding and Rounded Corners */}
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center p-6 md:p-12">
+        <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
+          {/* Dark overlay for better aesthetics */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 z-10 pointer-events-none"></div>
+          
+          {/* YouTube Video */}
           <iframe
             src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&quality=high&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0`}
             className="w-full h-full"
             style={{
-              minWidth: '100%',
+              minWidth: '177.77vh',
               minHeight: '100%',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
               objectFit: 'cover',
               pointerEvents: 'none',
             }}
@@ -59,25 +63,22 @@ const Hero = ({ profileData, onViewProjects }) => {
           ></iframe>
           
           {/* Top bar to hide YouTube title and channel name */}
-          <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black via-black/90 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10"></div>
           
           {/* Bottom bar to hide YouTube branding/slogan */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none z-10"></div>
           
-          {/* Additional corners overlay - stronger coverage */}
-          <div className="absolute top-0 left-0 w-48 h-32 bg-gradient-to-br from-black via-black/70 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute top-0 right-0 w-64 h-36 bg-gradient-to-bl from-black via-black/80 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute bottom-0 left-0 w-40 h-24 bg-gradient-to-tr from-black via-black/60 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-28 bg-gradient-to-tl from-black via-black/70 to-transparent pointer-events-none z-10"></div>
+          {/* Corner overlays */}
+          <div className="absolute top-0 left-0 w-32 h-24 bg-gradient-to-br from-black/70 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 right-0 w-48 h-28 bg-gradient-to-bl from-black/80 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute bottom-0 left-0 w-28 h-20 bg-gradient-to-tr from-black/60 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute bottom-0 right-0 w-36 h-24 bg-gradient-to-tl from-black/70 to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
 
-      {/* Hero Content - REMOVED: Clean video only */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center">
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="text-white w-8 h-8 opacity-70 drop-shadow-lg" />
-        </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <ChevronDown className="text-white w-8 h-8 opacity-70 drop-shadow-lg" />
       </div>
     </section>
   );
