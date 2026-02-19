@@ -59,16 +59,16 @@ const Hero = ({ profileData, onViewProjects }) => {
           ></iframe>
           
           {/* Top bar to hide YouTube title and channel name */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black via-black/90 to-transparent pointer-events-none z-10"></div>
           
           {/* Bottom bar to hide YouTube branding/slogan */}
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10"></div>
           
-          {/* Additional corners overlay */}
-          <div className="absolute top-0 left-0 w-40 h-28 bg-gradient-to-br from-black via-black/60 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute top-0 right-0 w-40 h-28 bg-gradient-to-bl from-black via-black/60 to-transparent pointer-events-none z-10"></div>
+          {/* Additional corners overlay - stronger coverage */}
+          <div className="absolute top-0 left-0 w-48 h-32 bg-gradient-to-br from-black via-black/70 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 right-0 w-64 h-36 bg-gradient-to-bl from-black via-black/80 to-transparent pointer-events-none z-10"></div>
           <div className="absolute bottom-0 left-0 w-40 h-24 bg-gradient-to-tr from-black via-black/60 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-24 bg-gradient-to-tl from-black via-black/60 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute bottom-0 right-0 w-48 h-28 bg-gradient-to-tl from-black via-black/70 to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
 
