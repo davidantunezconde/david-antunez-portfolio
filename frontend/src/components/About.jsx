@@ -3,7 +3,7 @@ import React from 'react';
 // Profile data - hardcoded
 const profileData = {
   name: "David Antúnez",
-  profileImage: "https://i.imgur.com/eXbIexB.jpeg",
+  profileImage: "https://customer-assets.emergentagent.com/job_frame-studio-19/artifacts/6r3mkxxf_image.png",
   bio: "Soc en David Antúnez, creatiu audiovisual i cineasta apassionat per donar vida a històries a través del poder de la narrativa visual. Amb anys d'experiència en cinematografia, edició i correcció de color, transformo idees en narratives convincents que connecten emocionalment amb el públic. El meu treball abasta documentals, videoclips musicals, produccions comercials i projectes artístics, cadascun creat amb una meticulosa atenció al detall i una profunda comprensió del llenguatge visual."
 };
 
