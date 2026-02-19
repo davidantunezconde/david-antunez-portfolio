@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { videoProjects, photographyProjects } from '../mockData';
 import { useNavigate } from 'react-router-dom';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -9,8 +8,8 @@ const Portfolio = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('video');
   const [projects, setProjects] = useState({
-    video: videoProjects,
-    photography: photographyProjects
+    video: [],
+    photography: []
   });
   const [loading, setLoading] = useState(true);
 
@@ -26,17 +25,13 @@ const Portfolio = () => {
         const videoProjs = data.filter(p => p.type === 'video');
         const photoProjs = data.filter(p => p.type === 'photography');
         
-        // Only update if we have projects from backend
-        if (data.length > 0) {
-          setProjects({
-            video: videoProjs,
-            photography: photoProjs
-          });
-        }
+        setProjects({
+          video: videoProjs,
+          photography: photoProjs
+        });
       }
     } catch (error) {
       console.error('Error fetching projects:', error);
-      // Keep using mock data if API fails
     } finally {
       setLoading(false);
     }
