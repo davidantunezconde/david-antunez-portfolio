@@ -20,27 +20,15 @@ const Hero = ({ profileData, onViewProjects }) => {
 
   return (
     <section className="hero-section relative h-screen w-full overflow-hidden">
-      {/* Vimeo Video Background */}
+      {/* Background Image with cinematic overlay */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <iframe
-          src={`https://player.vimeo.com/video/1166314185?autoplay=1&loop=1&muted=1&background=1&controls=0`}
-          className="absolute top-0 left-0 w-full h-full object-cover"
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            width: '100vw',
-            height: '56.25vw',
-            minHeight: '100vh',
-            minWidth: '177.77vh',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            backgroundImage: `url(https://images.unsplash.com/photo-1704580116048-cff8a7f72d47)`,
           }}
-          frameBorder="0"
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          title="Showreel Background"
-        ></iframe>
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black z-10"></div>
       </div>
 
       {/* Hero Content */}
