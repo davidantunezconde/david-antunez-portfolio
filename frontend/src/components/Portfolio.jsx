@@ -48,8 +48,7 @@ const Portfolio = () => {
 
   const ProjectCard = ({ project }) => (
     <div 
-      onClick={() => handleProjectClick(project.id)}
-      className="project-card group relative overflow-hidden rounded-lg cursor-pointer shadow-xl"
+      className="project-card group relative overflow-hidden rounded-lg shadow-xl"
     >
       <div className="aspect-[4/3] overflow-hidden">
         <img 
