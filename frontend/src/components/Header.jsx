@@ -5,14 +5,29 @@ import { Button } from './ui/button';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [waveAnimation, setWaveAnimation] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
+    // Listen for video end event
+    const handleVideoEnd = () => {
+      setWaveAnimation(true);
+      // Reset animation after it completes
+      setTimeout(() => {
+        setWaveAnimation(false);
+      }, 2500);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('videoEnded', handleVideoEnd);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('videoEnded', handleVideoEnd);
+    };
   }, []);
 
   const scrollToSection = (id) => {
@@ -24,10 +39,10 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: 'About', id: 'about' },
-    { label: 'Portfolio', id: 'portfolio' },
-    { label: 'Services', id: 'services' },
-    { label: 'Contact', id: 'contact' }
+    { label: 'About', id: 'about', delay: '0ms' },
+    { label: 'Portfolio', id: 'portfolio', delay: '150ms' },
+    { label: 'Services', id: 'services', delay: '300ms' },
+    { label: 'Contact', id: 'contact', delay: '450ms' }
   ];
 
   return (
@@ -54,7 +69,15 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-white hover:text-gray-300 transition-colors duration-300 font-medium"
+                data-testid={`nav-${item.id}`}
+                className={`text-white font-medium transition-all duration-500 ${
+                  waveAnimation 
+                    ? 'text-white scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]' 
+                    : 'hover:text-gray-300'
+                }`}
+                style={{
+                  transitionDelay: waveAnimation ? item.delay : '0ms',
+                }}
               >
                 {item.label}
               </button>
