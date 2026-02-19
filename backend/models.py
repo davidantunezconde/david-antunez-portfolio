@@ -20,32 +20,14 @@ class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
-# Contact Form Model
-class ContactSubmission(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    name: str
-    email: EmailStr
-    subject: str
-    message: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    read: bool = False
-
-class ContactSubmissionCreate(BaseModel):
-    name: str
-    email: EmailStr
-    subject: str
-    message: str
-
 # Project Model
 class Project(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
-    category: str  # Documentary, Music Video, Commercial, etc.
-    type: str  # video or photography
+    category: str
+    type: str
     thumbnail: str
     description: str
     year: str
@@ -55,7 +37,7 @@ class Project(BaseModel):
     gallery: List[str] = []
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
-    order: int = 0  # For custom ordering
+    order: int = 0
 
 class ProjectCreate(BaseModel):
     title: str
