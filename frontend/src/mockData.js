@@ -5,7 +5,7 @@ export const profileData = {
   title: "Audiovisual Creator / Filmmaker",
   tagline: "Crafting visual stories that move hearts and inspire minds",
   bio: "I am a passionate and driven professional who enjoys turning ideas into meaningful projects that create real value. I combine creativity, strategy, and attention to detail to deliver high-quality results.\n\nThroughout my professional journey, I have worked on diverse projects that have helped me develop a broad perspective, adaptability, and a strong commitment to excellence. I believe in doing things well, communicating clearly, and building relationships based on trust.\n\nI am constantly learning, exploring new ideas, and embracing challenges that help me grow both professionally and personally. Every project is an opportunity to innovate, improve, and exceed expectations.",
-  showreelUrl: "https://youtu.be/rHUYgdc1u7E",
+  showreelUrl: "https://youtu.be/GN2GYZoP16E",
   profileImage: "https://customer-assets.emergentagent.com/job_frame-studio-19/artifacts/6r3mkxxf_image.png",
   email: "davidantunezconde@gmail.com",
   socialMedia: {
