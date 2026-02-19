@@ -41,21 +41,26 @@ const Hero = ({ profileData, onViewProjects }) => {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
         
-        {/* YouTube Video - Less vertical cropping, High Quality */}
+        {/* YouTube Video - Less vertical cropping, High Quality, No Branding */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&quality=high`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&quality=high&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0`}
             className="w-full h-full"
             style={{
               minWidth: '100%',
               minHeight: '100%',
               objectFit: 'cover',
+              pointerEvents: 'none',
             }}
             frameBorder="0"
             allow="autoplay; encrypted-media"
             loading="eager"
             title="Showreel Background"
           ></iframe>
+          
+          {/* Overlay to hide YouTube branding in corners */}
+          <div className="absolute top-0 left-0 w-32 h-20 bg-gradient-to-br from-black/80 via-black/40 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 right-0 w-32 h-20 bg-gradient-to-bl from-black/80 via-black/40 to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
 
