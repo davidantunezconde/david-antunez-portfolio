@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { ChevronDown, Play } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const Hero = ({ profileData, onViewProjects }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     // Preconnect to YouTube for faster loading
@@ -18,12 +17,7 @@ const Hero = ({ profileData, onViewProjects }) => {
     preconnectLink2.href = 'https://i.ytimg.com';
     document.head.appendChild(preconnectLink2);
 
-    // Auto-play video after 1 second
-    const timer = setTimeout(() => {
-      setShowVideo(true);
-      setIsVideoLoaded(true);
-    }, 1000);
-
+    const timer = setTimeout(() => setIsVideoLoaded(true), 1000);
     return () => {
       clearTimeout(timer);
       document.head.removeChild(preconnectLink);
@@ -38,46 +32,34 @@ const Hero = ({ profileData, onViewProjects }) => {
     }
   };
 
-  // Extract YouTube video ID
   const videoId = 'rHUYgdc1u7E';
 
   return (
-    <section className="hero-section relative h-screen w-full overflow-hidden bg-gradient-to-b from-zinc-950 to-black">
-      {/* Video Background with Rounded Corners and Optimization */}
-      <div className="absolute inset-0 w-full h-full p-6 md:p-12">
-        <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/5">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
-          
-          {!showVideo ? (
-            // Optimized thumbnail with play button (loads instantly)
-            <div 
-              className="absolute inset-0 bg-cover bg-center cursor-pointer group"
-              style={{
-                backgroundImage: `url(https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg)`,
-              }}
-              onClick={() => setShowVideo(true)}
-            >
-              <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110">
-                  <Play className="w-10 h-10 text-white ml-1" fill="white" />
-                </div>
-              </div>
-            </div>
-          ) : (
-            // Actual YouTube video (loads on demand)
-            <iframe
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`}
-              className="absolute top-0 left-0 w-full h-full"
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              loading="lazy"
-              title="Showreel Background"
-            ></iframe>
-          )}
+    <section className="hero-section relative h-screen w-full overflow-hidden">
+      {/* Fullscreen YouTube Video Background - Properly Cropped 16:9 */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
+        
+        {/* YouTube Video - Cropped vertically to fit fullscreen */}
+        <div className="absolute inset-0 w-full h-full">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`}
+            className="absolute"
+            style={{
+              width: '100vw',
+              height: '56.25vw', // 16:9 aspect ratio
+              minHeight: '100vh',
+              minWidth: '177.78vh', // 16:9 inverse
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            loading="lazy"
+            title="Showreel Background"
+          ></iframe>
         </div>
       </div>
 
