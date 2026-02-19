@@ -39,10 +39,17 @@ const Hero = ({ profileData, onViewProjects }) => {
       {/* Video Container with Padding and Rounded Corners */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center p-4 md:p-8 lg:p-12">
         <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+          {/* Thumbnail fallback while video loads */}
+          <img 
+            src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+            alt="Showreel"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          
           {/* YouTube Video - using origin parameter for embedding */}
           <iframe
             src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&origin=${window.location.origin}`}
-            className="w-full h-full"
+            className="absolute inset-0 w-full h-full"
             style={{
               width: '300%',
               height: '300%',
