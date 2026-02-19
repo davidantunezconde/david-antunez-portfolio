@@ -36,28 +36,24 @@ const Hero = ({ profileData, onViewProjects }) => {
 
   return (
     <section className="hero-section relative h-screen w-full overflow-hidden">
-      {/* Fullscreen YouTube Video Background - Properly Cropped 16:9 */}
+      {/* Fullscreen YouTube Video Background - High Quality, Less Cropping */}
       <div className="absolute inset-0 w-full h-full">
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
         
-        {/* YouTube Video - Cropped vertically to fit fullscreen */}
-        <div className="absolute inset-0 w-full h-full">
+        {/* YouTube Video - Less vertical cropping, High Quality */}
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`}
-            className="absolute"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&quality=high`}
+            className="w-full h-full"
             style={{
-              width: '100vw',
-              height: '56.25vw', // 16:9 aspect ratio
-              minHeight: '100vh',
-              minWidth: '177.78vh', // 16:9 inverse
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
+              minWidth: '100%',
+              minHeight: '100%',
+              objectFit: 'cover',
             }}
             frameBorder="0"
             allow="autoplay; encrypted-media"
-            loading="lazy"
+            loading="eager"
             title="Showreel Background"
           ></iframe>
         </div>
