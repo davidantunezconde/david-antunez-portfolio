@@ -182,11 +182,13 @@ const Hero = () => {
 
       {/* Fullscreen YouTube Video Background */}
       <div className="absolute inset-0 w-full h-full">
-        {/* Thumbnail preload while video loads - z-0 so video shows on top */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: `url(https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg)` }}
-        />
+        {/* Thumbnail preload while video loads - hidden when video is playing */}
+        {!videoPlaying && (
+          <div 
+            className="absolute inset-0 bg-cover bg-center z-0"
+            style={{ backgroundImage: `url(https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg)` }}
+          />
+        )}
         
         {/* YouTube Video - Fullscreen 4K - z-1 above thumbnail */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center z-[1]">
