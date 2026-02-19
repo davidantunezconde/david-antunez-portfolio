@@ -54,6 +54,10 @@ const Hero = () => {
             setVideoReady(true);
           },
           onStateChange: (event) => {
+            // Video started playing (state 1)
+            if (event.data === 1) {
+              setVideoPlaying(true);
+            }
             // Video ended (state 0) - restart loop
             if (event.data === 0) {
               event.target.playVideo();
