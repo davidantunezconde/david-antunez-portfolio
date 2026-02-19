@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, Header
 from models import (
-    ContactSubmission, ContactSubmissionCreate,
     Project, ProjectCreate, ProjectUpdate,
     User, UserLogin,
     ProfileSettings, ProfileSettingsUpdate
@@ -17,16 +16,6 @@ router = APIRouter()
 def get_db():
     from server import db
     return db
-
-# Email notification function
-async def send_email_notification(contact_data: dict):
-    """Send email notification for contact form submission"""
-    # For now, just log it. In production, integrate with SendGrid, AWS SES, etc.
-    print(f"📧 New contact form submission from {contact_data['name']} ({contact_data['email']})")
-    print(f"Subject: {contact_data['subject']}")
-    print(f"Message: {contact_data['message']}")
-    # TODO: Integrate with email service
-    return True
 
 # Auth middleware
 async def get_current_user(authorization: Optional[str] = Header(None)):
@@ -81,53 +70,6 @@ async def get_current_user_info(current_user: dict = Depends(get_current_user)):
         "email": current_user["email"],
         "id": current_user["id"]
     }
-
-# ============= CONTACT FORM ROUTES =============
-
-@router.post("/contact")
-async def submit_contact_form(contact: ContactSubmissionCreate):
-    """Public endpoint: Submit contact form"""
-    db = get_db()
-    
-    contact_obj = ContactSubmission(**contact.dict())
-    await db.contact_submissions.insert_one(contact_obj.dict())
-    
-    # Send email notification
-    await send_email_notification(contact_obj.dict())
-    
-    return {"success": True, "message": "Your message has been sent successfully!"}
-
-@router.get("/admin/contacts")
-async def get_all_contacts(current_user: dict = Depends(get_current_user)):
-    """Admin only: Get all contact submissions"""
-    db = get_db()
-    contacts = await db.contact_submissions.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
-    return contacts
-
-@router.patch("/admin/contacts/{contact_id}/read")
-async def mark_contact_as_read(contact_id: str, current_user: dict = Depends(get_current_user)):
-    """Admin only: Mark contact as read"""
-    db = get_db()
-    result = await db.contact_submissions.update_one(
-        {"id": contact_id},
-        {"$set": {"read": True}}
-    )
-    
-    if result.modified_count == 0:
-        raise HTTPException(status_code=404, detail="Contact not found")
-    
-    return {"success": True}
-
-@router.delete("/admin/contacts/{contact_id}")
-async def delete_contact(contact_id: str, current_user: dict = Depends(get_current_user)):
-    """Admin only: Delete contact submission"""
-    db = get_db()
-    result = await db.contact_submissions.delete_one({"id": contact_id})
-    
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="Contact not found")
-    
-    return {"success": True}
 
 # ============= PROJECTS ROUTES =============
 
