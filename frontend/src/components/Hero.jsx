@@ -43,6 +43,17 @@ const Hero = () => {
             event.target.mute();
             event.target.setPlaybackQuality('hd2160'); // 4K
             event.target.playVideo();
+          },
+          onStateChange: (event) => {
+            // Video ended (state 0)
+            if (event.data === 0) {
+              // Dispatch custom event for wave animation
+              window.dispatchEvent(new CustomEvent('videoEnded'));
+              setWaveArrow(true);
+              setTimeout(() => setWaveArrow(false), 2500);
+              // Restart the video
+              event.target.playVideo();
+            }
           }
         }
       });
@@ -56,6 +67,17 @@ const Hero = () => {
             event.target.mute();
             event.target.setPlaybackQuality('hd2160'); // 4K
             event.target.playVideo();
+          },
+          onStateChange: (event) => {
+            // Video ended (state 0)
+            if (event.data === 0) {
+              // Dispatch custom event for wave animation
+              window.dispatchEvent(new CustomEvent('videoEnded'));
+              setWaveArrow(true);
+              setTimeout(() => setWaveArrow(false), 2500);
+              // Restart the video
+              event.target.playVideo();
+            }
           }
         }
       });
