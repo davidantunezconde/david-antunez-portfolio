@@ -123,10 +123,10 @@ const Hero = () => {
       }, 2000);
     }, 1000);
 
-    // Trigger wave animation exactly 1 minute (60 seconds) after clicking Discover
+    // Trigger wave animation exactly 1 minute and 2 seconds after clicking Discover
     waveTimerRef.current = setTimeout(() => {
       triggerWaveAnimation();
-    }, 60000); // 60000ms = 1 minute
+    }, 62000); // 62000ms = 1 minute 2 seconds
   };
 
   return (
