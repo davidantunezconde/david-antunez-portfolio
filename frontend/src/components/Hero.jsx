@@ -106,8 +106,6 @@ const Hero = () => {
   };
 
   const handleDiscover = () => {
-    setIsRevealing(true);
-    
     // Start video playback with sound
     if (playerRef.current) {
       playerRef.current.unMute();
@@ -115,18 +113,40 @@ const Hero = () => {
       playerRef.current.setPlaybackQuality('hd2160');
       playerRef.current.playVideo();
       setIsMuted(false);
-      setVideoPlaying(true);
     }
     
-    // Wait for animation to complete before hiding splash
+    // Start revealing animation
+    setIsRevealing(true);
+    
+    // Wait for video to actually start playing before fully hiding splash
+    const checkVideoPlaying = setInterval(() => {
+      if (playerRef.current) {
+        const state = playerRef.current.getPlayerState();
+        // State 1 = playing
+        if (state === 1) {
+          clearInterval(checkVideoPlaying);
+          setVideoPlaying(true);
+          
+          setTimeout(() => {
+            setShowSplash(false);
+            // Highlight the volume button to draw attention
+            setHighlightVolume(true);
+            setTimeout(() => {
+              setHighlightVolume(false);
+            }, 2000);
+          }, 500);
+        }
+      }
+    }, 100);
+    
+    // Fallback: hide splash after 3 seconds even if video not detected as playing
     setTimeout(() => {
+      clearInterval(checkVideoPlaying);
+      setVideoPlaying(true);
       setShowSplash(false);
-      // Highlight the volume button to draw attention
       setHighlightVolume(true);
-      setTimeout(() => {
-        setHighlightVolume(false);
-      }, 2000);
-    }, 1000);
+      setTimeout(() => setHighlightVolume(false), 2000);
+    }, 3000);
 
     // Trigger wave animation exactly 1 minute and 2 seconds after clicking Discover
     waveTimerRef.current = setTimeout(() => {
