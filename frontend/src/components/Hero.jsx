@@ -8,6 +8,23 @@ const Hero = () => {
   const iframeRef = useRef(null);
 
   useEffect(() => {
+    // Preconnect to YouTube for faster loading
+    const links = [
+      { rel: 'preconnect', href: 'https://www.youtube.com' },
+      { rel: 'preconnect', href: 'https://www.google.com' },
+      { rel: 'preconnect', href: 'https://i.ytimg.com' },
+      { rel: 'preconnect', href: 'https://s.ytimg.com' },
+      { rel: 'dns-prefetch', href: 'https://www.youtube.com' },
+    ];
+    
+    const createdLinks = links.map(({ rel, href }) => {
+      const link = document.createElement('link');
+      link.rel = rel;
+      link.href = href;
+      document.head.appendChild(link);
+      return link;
+    });
+
     // Load YouTube IFrame API
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -20,6 +37,7 @@ const Hero = () => {
         events: {
           onReady: (event) => {
             event.target.mute();
+            event.target.setPlaybackQuality('hd2160'); // 4K
             event.target.playVideo();
           }
         }
@@ -32,6 +50,7 @@ const Hero = () => {
         events: {
           onReady: (event) => {
             event.target.mute();
+            event.target.setPlaybackQuality('hd2160'); // 4K
             event.target.playVideo();
           }
         }
@@ -40,6 +59,9 @@ const Hero = () => {
 
     return () => {
       window.onYouTubeIframeAPIReady = null;
+      createdLinks.forEach(link => {
+        if (link.parentNode) link.parentNode.removeChild(link);
+      });
     };
   }, []);
 
