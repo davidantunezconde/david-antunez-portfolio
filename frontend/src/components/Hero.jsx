@@ -250,16 +250,20 @@ const Hero = () => {
       {!showSplash && (
         <div className="relative z-20 h-full flex flex-col items-center justify-center">
           <div 
-            className={`absolute bottom-12 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
+            className={`absolute bottom-12 left-1/2 transform -translate-x-1/2 transition-all duration-700 ${
               waveArrow 
-                ? 'scale-125 drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]' 
+                ? 'scale-150 drop-shadow-[0_0_25px_rgba(255,255,100,1)]' 
                 : 'animate-bounce'
             }`}
             style={{ transitionDelay: waveArrow ? '600ms' : '0ms' }}
           >
-            <ChevronDown className={`w-8 h-8 drop-shadow-lg transition-colors duration-500 ${
-              waveArrow ? 'text-white' : 'text-white opacity-70'
-            }`} />
+            <ChevronDown className={`w-10 h-10 drop-shadow-lg transition-all duration-700 ${
+              waveArrow ? 'text-yellow-300' : 'text-white opacity-70'
+            }`} 
+            style={{
+              filter: waveArrow ? 'drop-shadow(0 0 20px rgba(255, 255, 100, 0.9))' : 'none'
+            }}
+            />
           </div>
         </div>
       )}
