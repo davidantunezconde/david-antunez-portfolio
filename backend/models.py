@@ -1,10 +1,12 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 import uuid
 
 # User/Admin Model
 class User(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     email: EmailStr
     password_hash: str
@@ -20,6 +22,8 @@ class UserLogin(BaseModel):
 
 # Contact Form Model
 class ContactSubmission(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     email: EmailStr
@@ -36,6 +40,8 @@ class ContactSubmissionCreate(BaseModel):
 
 # Project Model
 class Project(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
     category: str  # Documentary, Music Video, Commercial, etc.
@@ -79,6 +85,8 @@ class ProjectUpdate(BaseModel):
 
 # Profile/Settings Model
 class ProfileSettings(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     title: str
