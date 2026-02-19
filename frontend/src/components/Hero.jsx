@@ -32,7 +32,7 @@ const Hero = ({ profileData, onViewProjects }) => {
     }
   };
 
-  const videoId = 'rHUYgdc1u7E';
+  const videoId = 'GN2GYZoP16E';
 
   return (
     <section className="hero-section relative h-screen w-full overflow-hidden">
