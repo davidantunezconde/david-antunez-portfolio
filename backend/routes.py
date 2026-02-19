@@ -244,5 +244,5 @@ async def update_profile_settings(profile_update: ProfileSettingsUpdate, current
         profile_obj = ProfileSettings(**update_data)
         await db.profile_settings.insert_one(profile_obj.dict())
     
-    updated_profile = await db.profile_settings.find_one()
+    updated_profile = await db.profile_settings.find_one({}, {"_id": 0})
     return updated_profile
