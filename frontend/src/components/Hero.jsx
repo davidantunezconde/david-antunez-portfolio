@@ -81,10 +81,16 @@ const Hero = () => {
     <section className="hero-section relative h-screen w-full overflow-hidden">
       {/* Fullscreen YouTube Video Background */}
       <div className="absolute inset-0 w-full h-full">
+        {/* Thumbnail preload while video loads */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg)` }}
+        />
+        
         {/* Dark overlay for better aesthetics */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10 pointer-events-none"></div>
         
-        {/* YouTube Video - Fullscreen */}
+        {/* YouTube Video - Fullscreen 4K */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <iframe
             id="hero-video"
