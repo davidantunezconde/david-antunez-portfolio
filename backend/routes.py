@@ -140,14 +140,14 @@ async def get_all_projects(type: Optional[str] = None):
     if type:
         query["type"] = type
     
-    projects = await db.projects.find(query).sort("order", 1).to_list(1000)
+    projects = await db.projects.find(query, {"_id": 0}).sort("order", 1).to_list(1000)
     return projects
 
 @router.get("/projects/{project_id}")
 async def get_project_by_id(project_id: str):
     """Public endpoint: Get single project by ID"""
     db = get_db()
-    project = await db.projects.find_one({"id": project_id})
+    project = await db.projects.find_one({"id": project_id}, {"_id": 0})
     
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
