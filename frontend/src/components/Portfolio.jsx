@@ -1,11 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { videoProjects, photographyProjects } from '../mockData';
 import { useNavigate } from 'react-router-dom';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const Portfolio = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('video');
+  const [projects, setProjects] = useState({
+    video: videoProjects,
+    photography: photographyProjects
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/projects`);
+      if (response.ok) {
+        const data = await response.json();
+        const videoProjs = data.filter(p => p.type === 'video');
+        const photoProjs = data.filter(p => p.type === 'photography');
+        
+        // Only update if we have projects from backend
+        if (data.length > 0) {
+          setProjects({
+            video: videoProjs,
+            photography: photoProjs
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      // Keep using mock data if API fails
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleProjectClick = (projectId) => {
     navigate(`/project/${projectId}`);
@@ -71,19 +106,31 @@ const Portfolio = () => {
           </TabsList>
 
           <TabsContent value="video" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {videoProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center text-gray-400">Loading projects...</div>
+            ) : projects.video.length === 0 ? (
+              <div className="text-center text-gray-400">No video projects yet</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.video.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="photography" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {photographyProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center text-gray-400">Loading projects...</div>
+            ) : projects.photography.length === 0 ? (
+              <div className="text-center text-gray-400">No photography projects yet</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.photography.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>
