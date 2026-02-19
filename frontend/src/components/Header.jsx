@@ -70,13 +70,14 @@ const Header = () => {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 data-testid={`nav-${item.id}`}
-                className={`text-white font-medium transition-all duration-500 ${
+                className={`text-white font-medium transition-all duration-700 ${
                   waveAnimation 
-                    ? 'text-white scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]' 
+                    ? 'scale-125 text-yellow-300 drop-shadow-[0_0_20px_rgba(255,255,100,1)]' 
                     : 'hover:text-gray-300'
                 }`}
                 style={{
                   transitionDelay: waveAnimation ? item.delay : '0ms',
+                  textShadow: waveAnimation ? '0 0 30px rgba(255, 255, 100, 0.9), 0 0 60px rgba(255, 255, 100, 0.5)' : 'none',
                 }}
               >
                 {item.label}
