@@ -240,8 +240,17 @@ const Hero = () => {
       {/* Scroll Indicator - only show after splash */}
       {!showSplash && (
         <div className="relative z-20 h-full flex flex-col items-center justify-center">
-          <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <ChevronDown className="text-white w-8 h-8 opacity-70 drop-shadow-lg" />
+          <div 
+            className={`absolute bottom-12 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
+              waveArrow 
+                ? 'scale-125 drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]' 
+                : 'animate-bounce'
+            }`}
+            style={{ transitionDelay: waveArrow ? '600ms' : '0ms' }}
+          >
+            <ChevronDown className={`w-8 h-8 drop-shadow-lg transition-colors duration-500 ${
+              waveArrow ? 'text-white' : 'text-white opacity-70'
+            }`} />
           </div>
         </div>
       )}
