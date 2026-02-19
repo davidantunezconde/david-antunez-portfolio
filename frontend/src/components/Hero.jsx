@@ -42,11 +42,11 @@ const Hero = ({ profileData, onViewProjects }) => {
   const videoId = 'rHUYgdc1u7E';
 
   return (
-    <section className="hero-section relative h-screen w-full overflow-hidden bg-black">
+    <section className="hero-section relative h-screen w-full overflow-hidden bg-gradient-to-b from-zinc-950 to-black">
       {/* Video Background with Rounded Corners and Optimization */}
-      <div className="absolute inset-0 w-full h-full p-4 md:p-8">
-        <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
+      <div className="absolute inset-0 w-full h-full p-6 md:p-12">
+        <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
           
           {!showVideo ? (
             // Optimized thumbnail with play button (loads instantly)
@@ -84,19 +84,19 @@ const Hero = ({ profileData, onViewProjects }) => {
       {/* Hero Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
         <div className="hero-content max-w-4xl">
-          <h1 className="hero-title text-5xl sm:text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight">
+          <h1 className="hero-title text-5xl sm:text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl">
             {profileData.name}
           </h1>
-          <p className="hero-subtitle text-xl sm:text-2xl md:text-3xl text-gray-200 mb-4 font-light">
+          <p className="hero-subtitle text-xl sm:text-2xl md:text-3xl text-gray-200 mb-4 font-light drop-shadow-lg">
             {profileData.title}
           </p>
-          <p className="hero-tagline text-base sm:text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+          <p className="hero-tagline text-base sm:text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto drop-shadow-lg">
             {profileData.tagline}
           </p>
           <Button 
             onClick={scrollToProjects}
             size="lg"
-            className="hero-cta text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 bg-white text-black hover:bg-gray-200 transition-all duration-300 transform hover:scale-105"
+            className="hero-cta text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 bg-white text-black hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-xl"
           >
             View Projects
           </Button>
@@ -104,7 +104,7 @@ const Hero = ({ profileData, onViewProjects }) => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="text-white w-8 h-8 opacity-70" />
+          <ChevronDown className="text-white w-8 h-8 opacity-70 drop-shadow-lg" />
         </div>
       </div>
     </section>
