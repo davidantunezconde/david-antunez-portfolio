@@ -1,34 +1,111 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* App Styles */
+.App {
+  min-height: 100vh;
+  background-color: #000000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Hero Section Animations */
+.hero-title {
+  animation: fadeInUp 1s ease-out;
 }
 
-.App-link {
-    color: #61dafb;
+.hero-subtitle {
+  animation: fadeInUp 1.2s ease-out;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.hero-tagline {
+  animation: fadeInUp 1.4s ease-out;
+}
+
+.hero-cta {
+  animation: fadeInUp 1.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Project Card Hover Effects */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* About Section Image */
+.about-image-wrapper {
+  animation: fadeIn 1s ease-out;
+}
+
+.about-content {
+  animation: fadeInRight 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Service Cards */
+.service-card {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Contact Form Focus Effects */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
 }
