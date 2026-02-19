@@ -6,7 +6,7 @@ export const profileData = {
   tagline: "Crafting visual stories that move hearts and inspire minds",
   bio: "I'm David Antúnez, a passionate filmmaker and audiovisual creator dedicated to bringing stories to life through the power of visual storytelling. With years of experience in cinematography, editing, and color grading, I transform ideas into compelling narratives that resonate emotionally with audiences. My work spans documentaries, music videos, commercial productions, and artistic projects, each crafted with meticulous attention to detail and a deep understanding of visual language.",
   showreelUrl: "https://youtu.be/rHUYgdc1u7E",
-  profileImage: "https://i.imgur.com/NSbVdv9.jpg",
+  profileImage: "https://customer-assets.emergentagent.com/job_frame-studio-19/artifacts/6r3mkxxf_image.png",
   email: "contact@davidantunezfilms.com",
   socialMedia: {
     instagram: "https://instagram.com/davidantunezfilms",
