@@ -1,37 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from './ui/button';
+import React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const Hero = ({ profileData, onViewProjects }) => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-  useEffect(() => {
-    // Preconnect to YouTube for faster loading
-    const preconnectLink = document.createElement('link');
-    preconnectLink.rel = 'preconnect';
-    preconnectLink.href = 'https://www.youtube.com';
-    document.head.appendChild(preconnectLink);
-
-    const preconnectLink2 = document.createElement('link');
-    preconnectLink2.rel = 'preconnect';
-    preconnectLink2.href = 'https://i.ytimg.com';
-    document.head.appendChild(preconnectLink2);
-
-    const timer = setTimeout(() => setIsVideoLoaded(true), 1000);
-    return () => {
-      clearTimeout(timer);
-      document.head.removeChild(preconnectLink);
-      document.head.removeChild(preconnectLink2);
-    };
-  }, []);
-
-  const scrollToProjects = () => {
-    const element = document.getElementById('portfolio');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+const Hero = () => {
   const videoId = 'GN2GYZoP16E';
 
   return (
