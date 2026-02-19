@@ -9,6 +9,7 @@ const Hero = () => {
   const [highlightVolume, setHighlightVolume] = useState(false);
   const [waveArrow, setWaveArrow] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
   const playerRef = useRef(null);
   const iframeRef = useRef(null);
   const waveTimerRef = useRef(null);
