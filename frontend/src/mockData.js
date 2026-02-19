@@ -7,11 +7,11 @@ export const profileData = {
   bio: "I am a passionate and driven professional who enjoys turning ideas into meaningful projects that create real value. I combine creativity, strategy, and attention to detail to deliver high-quality results.\n\nThroughout my professional journey, I have worked on diverse projects that have helped me develop a broad perspective, adaptability, and a strong commitment to excellence. I believe in doing things well, communicating clearly, and building relationships based on trust.\n\nI am constantly learning, exploring new ideas, and embracing challenges that help me grow both professionally and personally. Every project is an opportunity to innovate, improve, and exceed expectations.",
   showreelUrl: "https://youtu.be/rHUYgdc1u7E",
   profileImage: "https://customer-assets.emergentagent.com/job_frame-studio-19/artifacts/6r3mkxxf_image.png",
-  email: "contact@davidantunezfilms.com",
+  email: "davidantunezconde@gmail.com",
   socialMedia: {
-    instagram: "https://instagram.com/davidantunezfilms",
-    youtube: "https://youtube.com/@davidantunezfilms",
-    linkedin: "https://linkedin.com/in/davidantunez"
+    instagram: "https://www.instagram.com/davidantunez__/",
+    youtube: "https://www.youtube.com/@davidantunezconde",
+    linkedin: "https://www.linkedin.com/in/davidantunezconde"
   }
 };
 
