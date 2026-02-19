@@ -1,6 +1,13 @@
 import React from 'react';
 
-const About = ({ profileData }) => {
+// Profile data - hardcoded
+const profileData = {
+  name: "David Antúnez",
+  profileImage: "https://i.imgur.com/eXbIexB.jpeg",
+  bio: "Soc en David Antúnez, creatiu audiovisual i cineasta apassionat per donar vida a històries a través del poder de la narrativa visual. Amb anys d'experiència en cinematografia, edició i correcció de color, transformo idees en narratives convincents que connecten emocionalment amb el públic. El meu treball abasta documentals, videoclips musicals, produccions comercials i projectes artístics, cadascun creat amb una meticulosa atenció al detall i una profunda comprensió del llenguatge visual."
+};
+
+const About = () => {
   return (
     <section id="about" className="about-section py-32 px-6 relative overflow-hidden">
       {/* Background Image with Overlay */}
