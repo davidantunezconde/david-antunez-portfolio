@@ -199,13 +199,17 @@ const Hero = () => {
         <button
           onClick={toggleMute}
           data-testid="mute-toggle-btn"
-          className="absolute bottom-24 right-8 z-30 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20 group animate-fade-in"
+          className={`absolute bottom-24 right-8 z-30 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 border group
+            ${highlightVolume 
+              ? 'bg-white/40 border-white scale-110 shadow-lg shadow-white/30 animate-pulse' 
+              : 'bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20'
+            }`}
           aria-label={isMuted ? 'Activar so' : 'Silenciar'}
         >
           {isMuted ? (
-            <VolumeX className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+            <VolumeX className={`w-6 h-6 text-white transition-transform ${highlightVolume ? 'scale-110' : 'group-hover:scale-110'}`} />
           ) : (
-            <Volume2 className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+            <Volume2 className={`w-6 h-6 text-white transition-transform ${highlightVolume ? 'scale-110' : 'group-hover:scale-110'}`} />
           )}
         </button>
       )}
