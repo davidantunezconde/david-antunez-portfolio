@@ -20,15 +20,27 @@ const Hero = ({ profileData, onViewProjects }) => {
 
   return (
     <section className="hero-section relative h-screen w-full overflow-hidden">
-      {/* Background Image with cinematic overlay */}
+      {/* YouTube Video Background */}
       <div className="absolute inset-0 w-full h-full">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <iframe
+          src="https://www.youtube.com/embed/rHUYgdc1u7E?autoplay=1&mute=1&loop=1&playlist=rHUYgdc1u7E&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+          className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
           style={{
-            backgroundImage: `url(https://images.unsplash.com/photo-1704580116048-cff8a7f72d47)`,
+            width: '100vw',
+            height: '56.25vw',
+            minHeight: '100vh',
+            minWidth: '177.77vh',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
           }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black z-10"></div>
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          title="Showreel Background"
+        ></iframe>
       </div>
 
       {/* Hero Content */}
