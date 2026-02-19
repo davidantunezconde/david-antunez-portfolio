@@ -8,8 +8,10 @@ const Hero = () => {
   const [isRevealing, setIsRevealing] = useState(false);
   const [highlightVolume, setHighlightVolume] = useState(false);
   const [waveArrow, setWaveArrow] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const playerRef = useRef(null);
   const iframeRef = useRef(null);
+  const waveTimerRef = useRef(null);
 
   useEffect(() => {
     // Preconnect to YouTube for faster loading
@@ -36,22 +38,23 @@ const Hero = () => {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     // Initialize player when API is ready
-    window.onYouTubeIframeAPIReady = () => {
+    const initPlayer = () => {
       playerRef.current = new window.YT.Player('hero-video', {
         events: {
           onReady: (event) => {
+            // Preload video but keep it paused and muted
             event.target.mute();
             event.target.setPlaybackQuality('hd2160'); // 4K
-            event.target.playVideo();
+            // Cue the video to preload it without playing
+            event.target.cueVideoById({
+              videoId: videoId,
+              suggestedQuality: 'hd2160'
+            });
+            setVideoReady(true);
           },
           onStateChange: (event) => {
-            // Video ended (state 0)
+            // Video ended (state 0) - restart loop
             if (event.data === 0) {
-              // Dispatch custom event for wave animation
-              window.dispatchEvent(new CustomEvent('videoEnded'));
-              setWaveArrow(true);
-              setTimeout(() => setWaveArrow(false), 2500);
-              // Restart the video
               event.target.playVideo();
             }
           }
@@ -59,28 +62,11 @@ const Hero = () => {
       });
     };
 
+    window.onYouTubeIframeAPIReady = initPlayer;
+
     // If API is already loaded
     if (window.YT && window.YT.Player) {
-      playerRef.current = new window.YT.Player('hero-video', {
-        events: {
-          onReady: (event) => {
-            event.target.mute();
-            event.target.setPlaybackQuality('hd2160'); // 4K
-            event.target.playVideo();
-          },
-          onStateChange: (event) => {
-            // Video ended (state 0)
-            if (event.data === 0) {
-              // Dispatch custom event for wave animation
-              window.dispatchEvent(new CustomEvent('videoEnded'));
-              setWaveArrow(true);
-              setTimeout(() => setWaveArrow(false), 2500);
-              // Restart the video
-              event.target.playVideo();
-            }
-          }
-        }
-      });
+      initPlayer();
     }
 
     return () => {
@@ -88,6 +74,10 @@ const Hero = () => {
       createdLinks.forEach(link => {
         if (link.parentNode) link.parentNode.removeChild(link);
       });
+      // Clear wave timer on unmount
+      if (waveTimerRef.current) {
+        clearTimeout(waveTimerRef.current);
+      }
     };
   }, []);
 
@@ -103,13 +93,22 @@ const Hero = () => {
     }
   };
 
+  const triggerWaveAnimation = () => {
+    // Dispatch custom event for header wave animation
+    window.dispatchEvent(new CustomEvent('videoEnded'));
+    setWaveArrow(true);
+    setTimeout(() => setWaveArrow(false), 2500);
+  };
+
   const handleDiscover = () => {
     setIsRevealing(true);
     
-    // Unmute and play video with sound
+    // Start video playback with sound
     if (playerRef.current) {
       playerRef.current.unMute();
       playerRef.current.setVolume(100);
+      playerRef.current.setPlaybackQuality('hd2160');
+      playerRef.current.playVideo();
       setIsMuted(false);
     }
     
@@ -120,8 +119,13 @@ const Hero = () => {
       setHighlightVolume(true);
       setTimeout(() => {
         setHighlightVolume(false);
-      }, 2000); // Remove highlight after 2 seconds
+      }, 2000);
     }, 1000);
+
+    // Trigger wave animation exactly 1 minute (60 seconds) after clicking Discover
+    waveTimerRef.current = setTimeout(() => {
+      triggerWaveAnimation();
+    }, 60000); // 60000ms = 1 minute
   };
 
   return (
@@ -152,17 +156,18 @@ const Hero = () => {
             Filmmaker & Visual Creator
           </p>
           
-          {/* Discover Button */}
+          {/* Discover Button - English */}
           <button
             onClick={handleDiscover}
             data-testid="discover-btn"
             className={`group relative px-10 py-4 border border-white/30 rounded-full text-white font-medium tracking-wider uppercase transition-all duration-500 hover:bg-white hover:text-black hover:border-white ${
               isRevealing ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
-            }`}
+            } ${!videoReady ? 'opacity-50 cursor-wait' : ''}`}
+            disabled={!videoReady}
           >
             <span className="flex items-center gap-3">
               <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              Descobrir
+              {videoReady ? 'Discover' : 'Loading...'}
             </span>
           </button>
           
@@ -186,7 +191,7 @@ const Hero = () => {
           <iframe
             id="hero-video"
             ref={iframeRef}
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd2160&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&origin=${window.location.origin}`}
+            src={`https://www.youtube.com/embed/${videoId}?mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd2160&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&origin=${window.location.origin}`}
             className="w-full h-full"
             style={{
               minWidth: '100%',
@@ -227,7 +232,7 @@ const Hero = () => {
               ? 'bg-white/40 border-white scale-110 shadow-lg shadow-white/30 animate-pulse' 
               : 'bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20'
             }`}
-          aria-label={isMuted ? 'Activar so' : 'Silenciar'}
+          aria-label={isMuted ? 'Unmute' : 'Mute'}
         >
           {isMuted ? (
             <VolumeX className={`w-6 h-6 text-white transition-transform ${highlightVolume ? 'scale-110' : 'group-hover:scale-110'}`} />
