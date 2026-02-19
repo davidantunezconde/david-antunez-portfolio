@@ -82,9 +82,22 @@ const Hero = () => {
 
   const handleDiscover = () => {
     setIsRevealing(true);
+    
+    // Unmute and play video with sound
+    if (playerRef.current) {
+      playerRef.current.unMute();
+      playerRef.current.setVolume(100);
+      setIsMuted(false);
+    }
+    
     // Wait for animation to complete before hiding splash
     setTimeout(() => {
       setShowSplash(false);
+      // Highlight the volume button to draw attention
+      setHighlightVolume(true);
+      setTimeout(() => {
+        setHighlightVolume(false);
+      }, 2000); // Remove highlight after 2 seconds
     }, 1000);
   };
 
