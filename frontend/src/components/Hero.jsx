@@ -20,27 +20,23 @@ const Hero = ({ profileData, onViewProjects }) => {
 
   return (
     <section className="hero-section relative h-screen w-full overflow-hidden">
-      {/* YouTube Video Background */}
-      <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <iframe
-          src="https://www.youtube.com/embed/rHUYgdc1u7E?autoplay=1&mute=1&loop=1&playlist=rHUYgdc1u7E&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-          className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
-          style={{
-            width: '100vw',
-            height: '56.25vw',
-            minHeight: '100vh',
-            minWidth: '177.77vh',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          title="Showreel Background"
-        ></iframe>
+      {/* YouTube Video Background with Rounded Corners */}
+      <div className="absolute inset-0 w-full h-full p-8">
+        <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-black/40 z-10"></div>
+          <iframe
+            src="https://www.youtube.com/embed/rHUYgdc1u7E?autoplay=1&mute=1&loop=1&playlist=rHUYgdc1u7E&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+            className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            loading="lazy"
+            title="Showreel Background"
+          ></iframe>
+        </div>
       </div>
 
       {/* Hero Content */}
