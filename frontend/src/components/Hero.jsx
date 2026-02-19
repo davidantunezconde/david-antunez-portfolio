@@ -6,6 +6,7 @@ const Hero = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [showSplash, setShowSplash] = useState(true);
   const [isRevealing, setIsRevealing] = useState(false);
+  const [highlightVolume, setHighlightVolume] = useState(false);
   const playerRef = useRef(null);
   const iframeRef = useRef(null);
 
