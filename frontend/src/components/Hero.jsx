@@ -111,6 +111,7 @@ const Hero = () => {
       playerRef.current.setPlaybackQuality('hd2160');
       playerRef.current.playVideo();
       setIsMuted(false);
+      setVideoPlaying(true);
     }
     
     // Wait for animation to complete before hiding splash
