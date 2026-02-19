@@ -101,7 +101,7 @@ async def submit_contact_form(contact: ContactSubmissionCreate):
 async def get_all_contacts(current_user: dict = Depends(get_current_user)):
     """Admin only: Get all contact submissions"""
     db = get_db()
-    contacts = await db.contact_submissions.find().sort("created_at", -1).to_list(1000)
+    contacts = await db.contact_submissions.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
     return contacts
 
 @router.patch("/admin/contacts/{contact_id}/read")
