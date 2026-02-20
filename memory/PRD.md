@@ -136,9 +136,28 @@
 - bcrypt password hashing
 
 **Deployment:**
-- Emergent Platform
-- Supervisor for process management
-- MongoDB Atlas compatible
+- Emergent Platform (preview)
+- Ready for: IONOS Hosting (frontend) + Railway (backend)
+- See `/app/DEPLOYMENT_GUIDE.md` for full instructions
+
+---
+
+## DEPLOYMENT TO IONOS + RAILWAY
+
+### Quick Overview:
+```
+Frontend (React) → IONOS Hosting Plus
+Backend (Python) → Railway (free)
+Database (MongoDB) → Railway (free)
+```
+
+### Steps:
+1. Save code to GitHub (button at bottom of Emergent chat)
+2. Create Railway account → Deploy backend + MongoDB
+3. Build frontend → Upload to IONOS via FTP
+4. Configure domain
+
+Full guide: `/app/DEPLOYMENT_GUIDE.md`
 
 ---
 
